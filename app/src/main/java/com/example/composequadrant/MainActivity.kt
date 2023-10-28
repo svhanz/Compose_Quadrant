@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,13 +43,49 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CardPattern(title: String, descr: String, modifier: Modifier = Modifier) {
+fun ComposeQuadrantApp(modifier: Modifier = Modifier.fillMaxSize()){
+	Row (
+		modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f),
+		horizontalArrangement = Arrangement.SpaceEvenly
+		){
+		Column {
+			CardPattern(
+				stringResource(R.string.text_composable),
+				stringResource(R.string.displays_text))
+		}
+		Column {
+			CardPattern(
+				stringResource(R.string.text_composable),
+				stringResource(R.string.displays_text)
+			)
+		}
+	}
+	Row (
+		modifier = Modifier
+			.fillMaxWidth()
+			.fillMaxHeight(),
+		horizontalArrangement = Arrangement.SpaceEvenly
+	){
+		Column {
+			CardPattern(
+				stringResource(R.string.text_composable),
+				stringResource(R.string.displays_text)
+			)
+		}
+		Column {
+			CardPattern(
+				stringResource(R.string.text_composable),
+				stringResource(R.string.displays_text)
+			)
+		}
+	}
+}
+@Composable
+ fun CardPattern(title: String, descr: String, modifier: Modifier = Modifier) {
 	Column (
 		modifier = Modifier
 			.padding(16.dp)
-			.background(Color(0xFFEADDFF))
-			.fillMaxWidth()
-			.fillMaxHeight(),
+			.background(Color(0xFFEADDFF)),
 		horizontalAlignment = Alignment.CenterHorizontally,
 		verticalArrangement = Arrangement.Center
 	){
@@ -69,9 +106,6 @@ fun CardPattern(title: String, descr: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
 	ComposeQuadrantTheme {
-		CardPattern(
-			stringResource(R.string.text_composable),
-			stringResource(R.string.displays_text)
-		)
+		ComposeQuadrantApp()
 	}
 }
