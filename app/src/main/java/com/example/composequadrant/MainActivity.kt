@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,63 +42,24 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ComposeQuadrantApp (){
-	Column (Modifier.fillMaxWidth()){
-		Row(Modifier.weight(1f))
-		{
-			CardPattern(
-				title = stringResource(R.string.text_composable),
-				descr = stringResource(R.string.displays_text),
-				bgColor = Color(0xFFEADDFF),
-				modifier = Modifier.weight(1f)
-			)
-			CardPattern(
-				title = stringResource(R.string.text_composable),
-				descr = stringResource(R.string.displays_text),
-				bgColor = Color(0xFFD0BCFF),
-				modifier = Modifier.weight(1f)
-			)
-		}
-		Row(Modifier.weight(1f))
-		{
-			CardPattern(
-				title = stringResource(R.string.text_composable),
-				descr = stringResource(R.string.displays_text),
-				bgColor = Color(0xFFB69DF8),
-				modifier = Modifier.weight(1f)
-			)
-			CardPattern(
-				title = stringResource(R.string.text_composable),
-				descr = stringResource(R.string.displays_text),
-				bgColor = Color(0xFFF6EDFF),
-				modifier = Modifier.weight(1f)
-			)
-		}
-	}
-}
-
-@Composable
-private fun CardPattern(
-	title: String,
-	descr: String,
-	bgColor: Color,
-	modifier: Modifier = Modifier) {
+fun CardPattern(title: String, descr: String, modifier: Modifier = Modifier) {
 	Column (
-		modifier = modifier
-			.fillMaxSize()
-			.background(bgColor)
-			.padding(16.dp),
-		verticalArrangement = Arrangement.Center,
+		modifier = Modifier
+			.padding(16.dp)
+			.background(Color(0xFFEADDFF))
+			.fillMaxWidth()
+			.fillMaxHeight(),
 		horizontalAlignment = Alignment.CenterHorizontally,
-	)
-	{
+		verticalArrangement = Arrangement.Center
+	){
 		Text(
 			text = title,
-			modifier = Modifier.padding(bottom = 16.dp),
+			modifier = modifier.padding(bottom = 16.dp),
 			fontWeight = FontWeight.Bold
 		)
 		Text(
 			text = descr,
+			modifier = Modifier,
 			textAlign = TextAlign.Justify
 		)
 	}
@@ -109,6 +69,9 @@ private fun CardPattern(
 @Composable
 fun GreetingPreview() {
 	ComposeQuadrantTheme {
-		ComposeQuadrantApp()
+		CardPattern(
+			stringResource(R.string.text_composable),
+			stringResource(R.string.displays_text)
+		)
 	}
 }
